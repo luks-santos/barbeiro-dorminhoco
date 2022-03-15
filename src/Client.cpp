@@ -1,5 +1,5 @@
 #include "Client.h"
-
+#include <unistd.h>
 
 Client::Client() {
     barberChair = sem_open("/barberChair", O_CREAT, S_IRWXU, 0);
@@ -15,12 +15,13 @@ Client::Client(int &freeChairs) {
 }
 
 void Client::sit() {
-    cout << "cliente entrou" << endl;
+
     sem_wait(availability);
     cout << *freeChairs << endl;
     if(*freeChairs > 0) {
 
         cout << "diminuindo cadeira" << endl;
+
         --*freeChairs;
         cout << *freeChairs << endl;
 
@@ -31,6 +32,6 @@ void Client::sit() {
 
     } else {
         sem_post(availability);
-       // cout<<" O Cliente foi embora"<<endl;
+       cout<<" O Cliente foi embora"<<endl;
     }
 }

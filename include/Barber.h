@@ -15,12 +15,12 @@ class Barber
         virtual ~Barber() {};
 
         void cutHair();
-
+        int *freeChairs;
     private:
         sem_t *barberChair;
         sem_t *waitChairs;
         sem_t *availability;
-        int *freeChairs;
+
 };
 
 #endif // BARBER_H

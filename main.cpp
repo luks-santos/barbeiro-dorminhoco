@@ -2,24 +2,27 @@
 #include <thread>
 #include "BarberShop.h"
 #include "Client.h"
+#include <vector>
 
 using namespace std;
 
 int main()
 {
+    int cad = 5;
+    int *cadap = &cad;
+    vector<thread> vthread;
 
-    int cadeiras = 5;
-    int *cd = &cadeiras;
+    Barber barber(*cadap);
+    vthread.push_back(thread(&Barber::cutHair, &barber));
+    Client *clis = new Client[10];
 
-    Barber *b = new Barber(*cd);
-    thread(&Barber::cutHair, b).detach();
-
-    for (int i = 0; i < 20; i++) {
-        Client *c = new Client(*cd);
-         thread(&Client::sit, c).join();
+      for(int i = 0; i < 10; i++){
+        clis[i].freeChairs = cadap;
+        vthread.push_back(thread(&Client::sit, clis[i]));
     }
 
-
-
+      for(int i = 0; i < 10; i++){
+        vthread[i].join();
+    }
     return 0;
 }
