@@ -4,6 +4,8 @@
 #include <semaphore.h>
 #include <fcntl.h>
 #include <iostream>
+#include <stdlib.h>
+
 using namespace std;
 
 class Client
@@ -12,14 +14,14 @@ class Client
         Client();
         Client(int &freeChairs);
         virtual ~Client() {};
-
+        void setFreeChairs(int &freeChairs);
         void sit();
-    int *freeChairs;
+
     private:
         sem_t *barberChair;
         sem_t *waitChairs;
         sem_t *availability;
-
+        int *freeChairs;
 };
 
 #endif // CLIENT_H

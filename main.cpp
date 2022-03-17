@@ -1,28 +1,29 @@
 #include <iostream>
-#include <thread>
 #include "BarberShop.h"
-#include "Client.h"
-#include <vector>
+#include <signal.h>
+
+#include <stdio.h>
 
 using namespace std;
 
+
+
+void sigintHandler(int sig_num)
+{
+
+    printf("\n O expediente foi encerrado \n");
+    raise(SIGTERM);
+
+}
+
 int main()
 {
-    int cad = 5;
-    int *cadap = &cad;
-    vector<thread> vthread;
-
-    Barber barber(*cadap);
-    vthread.push_back(thread(&Barber::cutHair, &barber));
-    Client *clis = new Client[10];
-
-      for(int i = 0; i < 10; i++){
-        clis[i].freeChairs = cadap;
-        vthread.push_back(thread(&Client::sit, clis[i]));
-    }
-
-      for(int i = 0; i < 10; i++){
-        vthread[i].join();
-    }
+    signal(SIGINT, sigintHandler);
+    int chairs = 5;
+    BarberShop barberShop(chairs);
+    barberShop.openBarberShop();
     return 0;
+
+
+    //while(true);
 }
