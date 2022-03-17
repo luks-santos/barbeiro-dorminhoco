@@ -19,11 +19,13 @@ class Barber
         void setFreeChairs(int &freeChairs);
         void cutHair();
         void unlink();
+        int maxChairs;
     private:
         sem_t *barberChair;
         sem_t *waitChairs;
         sem_t *availability;
         int *freeChairs;
+
 };
 
 #endif // BARBER_H

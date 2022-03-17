@@ -1,30 +1,34 @@
 # depslib dependency file v1.0
-1647424420 source:/home/punk/Desktop/BarbeiroDorminhoco/main.cpp
+1647548931 source:/home/punk/Desktop/BarbeiroDorminhoco/main.cpp
 	<iostream>
+	<signal.h>
+	<stdio.h>
 	"BarberShop.h"
 
-1647425337 source:/home/punk/Desktop/BarbeiroDorminhoco/src/Barber.cpp
+1647550431 source:/home/punk/Desktop/BarbeiroDorminhoco/src/Barber.cpp
 	"Barber.h"
-	<unistd.h>
 
-1647425438 /home/punk/Desktop/BarbeiroDorminhoco/include/Barber.h
+1647549527 /home/punk/Desktop/BarbeiroDorminhoco/include/Barber.h
 	<semaphore.h>
 	<fcntl.h>
 	<iostream>
+	<unistd.h>
+	<stdlib.h>
 
-1647424857 source:/home/punk/Desktop/BarbeiroDorminhoco/src/Client.cpp
+1647549830 source:/home/punk/Desktop/BarbeiroDorminhoco/src/Client.cpp
 	"Client.h"
 	<unistd.h>
 
-1647424773 /home/punk/Desktop/BarbeiroDorminhoco/include/Client.h
+1647550084 /home/punk/Desktop/BarbeiroDorminhoco/include/Client.h
 	<semaphore.h>
 	<fcntl.h>
 	<iostream>
+	<stdlib.h>
 
-1647424953 source:/home/punk/Desktop/BarbeiroDorminhoco/src/BarberShop.cpp
+1647550097 source:/home/punk/Desktop/BarbeiroDorminhoco/src/BarberShop.cpp
 	"BarberShop.h"
 
-1647424445 /home/punk/Desktop/BarbeiroDorminhoco/include/BarberShop.h
+1647548765 /home/punk/Desktop/BarbeiroDorminhoco/include/BarberShop.h
 	"Barber.h"
 	"Client.h"
 	<thread>

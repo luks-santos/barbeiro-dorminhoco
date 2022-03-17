@@ -16,12 +16,14 @@ class Client
         virtual ~Client() {};
         void setFreeChairs(int &freeChairs);
         void sit();
+        int maxChairs;
 
     private:
         sem_t *barberChair;
         sem_t *waitChairs;
         sem_t *availability;
         int *freeChairs;
+
 };
 
 #endif // CLIENT_H

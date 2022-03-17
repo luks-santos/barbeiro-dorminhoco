@@ -2,14 +2,15 @@
 
 BarberShop::BarberShop(int &chairs)
 {
-    int aux = chairs;
     freeChairs = &chairs;
     barber.setFreeChairs(*freeChairs);
+    barber.maxChairs = *freeChairs;
     operation.push_back(thread(&Barber::cutHair, &barber));
 
     clients = new Client[10];
     for(int i = 0; i < 10; i++){
         clients[i].setFreeChairs(*freeChairs);
+        clients[i].maxChairs = *freeChairs;
         operation.push_back(thread(&Client::sit, clients[i]));
     }
 }

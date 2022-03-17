@@ -1,8 +1,8 @@
 #include <iostream>
-#include "BarberShop.h"
 #include <signal.h>
-
 #include <stdio.h>
+
+#include "BarberShop.h"
 
 using namespace std;
 
@@ -10,8 +10,7 @@ using namespace std;
 
 void sigintHandler(int sig_num)
 {
-
-    printf("\n O expediente foi encerrado \n");
+    cout << "\nO expediente foi encerrado" << endl;
     raise(SIGTERM);
 
 }
@@ -23,7 +22,4 @@ int main()
     BarberShop barberShop(chairs);
     barberShop.openBarberShop();
     return 0;
-
-
-    //while(true);
 }
