@@ -68,3 +68,36 @@
 	"Client.h"
 	<unistd.h>
 
+1647984467 source:/home/jorge/BarbeiroDorminhoco/main.cpp
+	<iostream>
+	<signal.h>
+	"BarberShop.h"
+
+1647983298 /home/jorge/BarbeiroDorminhoco/include/BarberShop.h
+	"Barber.h"
+	"Client.h"
+	<thread>
+	<vector>
+	<iostream>
+
+1647983298 /home/jorge/BarbeiroDorminhoco/include/Barber.h
+	<semaphore.h>
+	<fcntl.h>
+	<unistd.h>
+	<iostream>
+
+1647983298 /home/jorge/BarbeiroDorminhoco/include/Client.h
+	<semaphore.h>
+	<fcntl.h>
+	<unistd.h>
+	<iostream>
+
+1647984467 source:/home/jorge/BarbeiroDorminhoco/src/BarberShop.cpp
+	"BarberShop.h"
+
+1647983606 source:/home/jorge/BarbeiroDorminhoco/src/Barber.cpp
+	"Barber.h"
+
+1647983715 source:/home/jorge/BarbeiroDorminhoco/src/Client.cpp
+	"Client.h"
+

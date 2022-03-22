@@ -31,7 +31,7 @@ void Barber::cutHair()
         cout << "O Barbeiro está cortando o Cabelo do Cliente " << (maxChairs - getValue()) + 1 << "." << endl;
         sem_post(mutex);
 
-        sleep(rand() % 10 + 1);
+        sleep(rand() % 5);
         sem_post(barberChair);
         sem_post(availability);
 

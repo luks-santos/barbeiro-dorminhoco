@@ -14,6 +14,7 @@ BarberShop::BarberShop()
         clients[i].setFreeChairs(n);
         operation.push_back(thread(&Client::sit, clients[i]));
     }
+    closeBarberShop();
 }
 
 BarberShop::~BarberShop()

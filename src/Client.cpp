@@ -16,7 +16,7 @@ void Client::setFreeChairs(int free)
 
 void Client::sit()
 {
-    sleep(rand() % 5 + 1);
+    sleep(rand() % 20);
     sem_wait(availability);
     if(getValue()) {
         sem_wait(mutex);
