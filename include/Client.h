@@ -3,27 +3,26 @@
 
 #include <semaphore.h>
 #include <fcntl.h>
-#include <iostream>
-#include <stdlib.h>
+#include <unistd.h>
 
+#include <iostream>
 using namespace std;
 
 class Client
 {
     public:
         Client();
-        Client(int &freeChairs);
         virtual ~Client() {};
-        void setFreeChairs(int &freeChairs);
+        void setFreeChairs(int free);
         void sit();
-        int maxChairs;
-
+        int getValue();
     private:
+        int maxChairs;
         sem_t *barberChair;
         sem_t *waitChairs;
         sem_t *availability;
-        int *freeChairs;
-
+        sem_t *freeChairs;
+        sem_t *mutex;
 };
 
 #endif // CLIENT_H

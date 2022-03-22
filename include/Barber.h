@@ -3,10 +3,9 @@
 
 #include <semaphore.h>
 #include <fcntl.h>
-#include <iostream>
 #include <unistd.h>
-#include <stdlib.h>
 
+#include <iostream>
 using namespace std;
 
 
@@ -14,18 +13,19 @@ class Barber
 {
     public:
         Barber();
-        Barber(int &freeChairs);
         virtual ~Barber() {};
-        void setFreeChairs(int &freeChairs);
+        void setFreeChairs(int free);
         void cutHair();
         void unlink();
-        int maxChairs;
+        int getValue();
+
     private:
+        int maxChairs;
         sem_t *barberChair;
         sem_t *waitChairs;
         sem_t *availability;
-        int *freeChairs;
-
+        sem_t *freeChairs;
+        sem_t *mutex;
 };
 
 #endif // BARBER_H

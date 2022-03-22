@@ -1,45 +1,52 @@
 #include "Client.h"
-#include <unistd.h>
 
 Client::Client()
 {
     barberChair = sem_open("/barberChair", O_CREAT, S_IRWXU, 0);
     waitChairs = sem_open("/waitChairs", O_CREAT, S_IRWXU, 0);
     availability = sem_open("/availability", O_CREAT, S_IRWXU, 1);
+    mutex = sem_open("/mutex", O_CREAT, S_IRWXU, 1);
 }
 
-Client::Client(int &freeChairs)
+void Client::setFreeChairs(int free)
 {
-    barberChair = sem_open("/barberChair", O_CREAT, S_IRWXU, 0);
-    waitChairs = sem_open("/waitChairs", O_CREAT, S_IRWXU, 0);
-    availability = sem_open("/availability", O_CREAT, S_IRWXU, 1);
-    this->freeChairs = &freeChairs;
-    maxChairs = freeChairs;
-}
-
-void Client::setFreeChairs(int &freeChairs)
-{
-    this->freeChairs = &freeChairs;
+    freeChairs = sem_open("/freeChairs", O_CREAT, S_IRWXU, free);
+    maxChairs = free;
 }
 
 void Client::sit()
 {
-    sleep(rand() % 30 + 1);
+    sleep(rand() % 5 + 1);
     sem_wait(availability);
-
-    if(*freeChairs > 0) {
-
+    if(getValue()) {
+        sem_wait(mutex);
         cout << "Chegou um novo cliente." << endl;
-        --*freeChairs;
-        cout << "Existem " << *freeChairs << " de " << maxChairs << " cadeiras livres para espera, Cliente aguardando sua vez." << endl;
+        sem_post(mutex);
+
+        sem_wait(freeChairs);
+
+        sem_wait(mutex);
+        cout << "Existem " << getValue() << " de " << maxChairs << " cadeiras livres para espera, Cliente aguardando sua vez." << endl;
+        sem_post(mutex);
+
         sem_post(waitChairs);
-
         sem_post(availability);
-
         sem_wait(barberChair);
-
-    } else {
-        sem_post(availability);
-        cout<< "Não existem cadeiras de espera disponíveis, Cliente foi embora." << endl;
     }
+    else {
+        sem_post(availability);
+
+        sem_wait(mutex);
+        cout<< "Não existem cadeiras de espera disponíveis, Cliente foi embora." << endl;
+        sem_post(mutex);
+    }
+}
+
+int Client::getValue()
+{
+    int *aux = new int();
+    sem_getvalue(freeChairs, aux);
+    int value = *aux;
+    delete aux; aux = nullptr;
+    return value;
 }

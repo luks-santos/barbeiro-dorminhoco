@@ -1,35 +1,30 @@
 #include "BarberShop.h"
 
-BarberShop::BarberShop(int &chairs)
+BarberShop::BarberShop()
 {
-    freeChairs = &chairs;
-    barber.setFreeChairs(*freeChairs);
-    barber.maxChairs = *freeChairs;
-    operation.push_back(thread(&Barber::cutHair, &barber));
+    int n;
+    cout << "Informe a quantidade n de cadeiras livres: ";
+    cin >> n;
+    barber.setFreeChairs(n);
 
-    clients = new Client[10];
-    for(int i = 0; i < 10; i++){
-        clients[i].setFreeChairs(*freeChairs);
-        clients[i].maxChairs = *freeChairs;
+    operation.push_back(thread(&Barber::cutHair, barber));
+
+    clients = new Client[NCLIENTS];
+    for(int i = 0; i < NCLIENTS; i++) {
+        clients[i].setFreeChairs(n);
         operation.push_back(thread(&Client::sit, clients[i]));
     }
 }
 
 BarberShop::~BarberShop()
 {
-    cout << "deletei" << endl;
-    delete freeChairs;
-    freeChairs = nullptr;
+    cout << "TO AQ" << endl;
     delete[] clients;
     clients = nullptr;
 }
-void BarberShop::openBarberShop()
-{
 
+void BarberShop::closeBarberShop() {
     for(long unsigned int i = 0; i < operation.size(); i++){
         operation[i].join();
     }
-
 }
-
-
