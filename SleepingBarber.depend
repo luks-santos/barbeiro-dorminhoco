@@ -67,36 +67,35 @@
 	"Client.h"
 	<unistd.h>
 
-1647984467 source:/home/jorge/BarbeiroDorminhoco/main.cpp
+1648118777 source:/home/jorge/BarbeiroDorminhoco/main.cpp
 	<iostream>
 	<signal.h>
 	"BarberShop.h"
 
-1647983298 /home/jorge/BarbeiroDorminhoco/include/BarberShop.h
-	"Barber.h"
-	"Client.h"
+1648083009 /home/jorge/BarbeiroDorminhoco/include/BarberShop.h
 	<thread>
 	<vector>
+	"Barber.h"
+	"Client.h"
+
+1648119069 /home/jorge/BarbeiroDorminhoco/include/Barber.h
+	<semaphore.h>
+	<unistd.h>
+	<fcntl.h>
 	<iostream>
 
-1647983298 /home/jorge/BarbeiroDorminhoco/include/Barber.h
+1648119219 /home/jorge/BarbeiroDorminhoco/include/Client.h
 	<semaphore.h>
 	<fcntl.h>
 	<unistd.h>
 	<iostream>
 
-1647983298 /home/jorge/BarbeiroDorminhoco/include/Client.h
-	<semaphore.h>
-	<fcntl.h>
-	<unistd.h>
-	<iostream>
-
-1647984467 source:/home/jorge/BarbeiroDorminhoco/src/BarberShop.cpp
+1648119116 source:/home/jorge/BarbeiroDorminhoco/src/BarberShop.cpp
 	"BarberShop.h"
 
-1647983606 source:/home/jorge/BarbeiroDorminhoco/src/Barber.cpp
+1648119092 source:/home/jorge/BarbeiroDorminhoco/src/Barber.cpp
 	"Barber.h"
 
-1647983715 source:/home/jorge/BarbeiroDorminhoco/src/Client.cpp
+1648119191 source:/home/jorge/BarbeiroDorminhoco/src/Client.cpp
 	"Client.h"
 

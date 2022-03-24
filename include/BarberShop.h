@@ -1,3 +1,15 @@
+/*********************************************************
+ * Trabalho da disciplina de Sistemas Operacionais       *
+ *               Barbeiro Dorminhoco                     *
+ *                                                       *
+ * Curso: Bacharelado em Engenharia da Computação        *
+ * Professor: Samuel Dias                                *
+ *                                                       *
+ * Autores:                                              *
+ * Lucas Batista dos Santos - 0048505                    *
+ * Jorge Luís Vieira Murilo - 0027752                    *
+ ********************************************************/
+
 #ifndef BARBERSHOP_H
 #define BARBERSHOP_H
 
