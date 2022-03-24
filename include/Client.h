@@ -14,8 +14,8 @@ class Client
         Client();
         virtual ~Client() {};
         void setFreeChairs(int free);
-        void sit();
-        int getValue();
+        void sitOnChair();
+        int getFreeChairs();
     private:
         int maxChairs;
         sem_t *barberChair;

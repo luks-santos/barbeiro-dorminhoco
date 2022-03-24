@@ -2,12 +2,13 @@
 #define BARBER_H
 
 #include <semaphore.h>
-#include <fcntl.h>
+//Biblioteca para funções sleep()
 #include <unistd.h>
-
+//Biblioteca para constantes de acesso aos semáforos
+#include <fcntl.h>
 #include <iostream>
-using namespace std;
 
+using namespace std;
 
 class Barber
 {
@@ -17,8 +18,7 @@ class Barber
         void setFreeChairs(int free);
         void cutHair();
         void unlink();
-        int getValue();
-
+        int getFreeChairs();
     private:
         int maxChairs;
         sem_t *barberChair;

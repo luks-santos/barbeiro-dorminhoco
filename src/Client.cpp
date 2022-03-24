@@ -2,6 +2,7 @@
 
 Client::Client()
 {
+    //Inicia os semáforos com nome, se já existir o semáforo abre o existente
     barberChair = sem_open("/barberChair", O_CREAT, S_IRWXU, 0);
     waitChairs = sem_open("/waitChairs", O_CREAT, S_IRWXU, 0);
     availability = sem_open("/availability", O_CREAT, S_IRWXU, 1);
@@ -14,35 +15,39 @@ void Client::setFreeChairs(int free)
     maxChairs = free;
 }
 
-void Client::sit()
+void Client::sitOnChair()
 {
-    sleep(rand() % 20);
-    sem_wait(availability);
-    if(getValue()) {
+    //Sorteia tempo aleátorio para chegada dos clientes
+    sleep(rand() % 14);
+    sem_wait(availability);//Seção crítica para quantidade de cadeiras e barbeiro
+    //Verifica disponiblidade de cadeiras livres
+    if(getFreeChairs()) {
+        //Seção crítica para cout
         sem_wait(mutex);
         cout << "Chegou um novo cliente." << endl;
         sem_post(mutex);
-
+        //Decrementa quantidade de cadeiras livres
         sem_wait(freeChairs);
-
+         //Seção crítica para cout
         sem_wait(mutex);
-        cout << "Existem " << getValue() << " de " << maxChairs << " cadeiras livres para espera, Cliente aguardando sua vez." << endl;
+        cout << "Existem " << getFreeChairs() << " de " << maxChairs << " cadeiras livres para espera, Cliente aguardando sua vez." << endl;
         sem_post(mutex);
-
+        //Momento que cliente senta na cadeira de espera e chama o barbeiro
         sem_post(waitChairs);
+        //Libera seção critica novo cliente entrar na barbearia ou barbeiro corta o cabelo
         sem_post(availability);
+        //Espera barbeiro cortar cabelo
         sem_wait(barberChair);
     }
     else {
-        sem_post(availability);
-
         sem_wait(mutex);
         cout<< "Não existem cadeiras de espera disponíveis, Cliente foi embora." << endl;
         sem_post(mutex);
+        sem_post(availability);
     }
 }
 
-int Client::getValue()
+int Client::getFreeChairs()
 {
     int *aux = new int();
     sem_getvalue(freeChairs, aux);

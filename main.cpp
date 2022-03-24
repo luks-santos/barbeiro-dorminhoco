@@ -5,21 +5,16 @@
 
 using namespace std;
 
-void sigintHandler(int sig_num)
+//Tratador de sinal CTRL-C
+void sigintHandler(int sig)
 {
-
-    cout<<("\n O expediente foi encerrado, volte amanhã!! \n")<<endl;
-
-    //raise(SIGTERM);
+    cout << "O expediente foi encerrado, volte amanhã!!" << endl;
     exit(0);
-
 }
 
-
 int main() {
+    setlocale(LC_ALL, "Portuguese");
     signal(SIGINT, sigintHandler);
     BarberShop barbershop;
-    //sleep(60);
-    //barbershop.closeBarberShop();
     return 0;
 }

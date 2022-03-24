@@ -2,29 +2,28 @@
 
 BarberShop::BarberShop()
 {
-    int n;
-    cout << "Informe a quantidade n de cadeiras livres: ";
-    cin >> n;
-    barber.setFreeChairs(n);
-
+    //Seta o número de cadeiras disponíveis na barbearia
+    barber.setFreeChairs(NCHAIRS);
+    //Inicia a thread do barbeiro
     operation.push_back(thread(&Barber::cutHair, barber));
-
+    //Inicia o vetor de clientes com número fixo de clientes
     clients = new Client[NCLIENTS];
+    //Inicia as threads dos clientes representadas por um número fixo
     for(int i = 0; i < NCLIENTS; i++) {
-        clients[i].setFreeChairs(n);
-        operation.push_back(thread(&Client::sit, clients[i]));
+        clients[i].setFreeChairs(NCHAIRS);
+        operation.push_back(thread(&Client::sitOnChair, clients[i]));
     }
-    closeBarberShop();
 }
 
 BarberShop::~BarberShop()
 {
-    cout << "TO AQ" << endl;
+    organizeBarberShop();
     delete[] clients;
     clients = nullptr;
 }
 
-void BarberShop::closeBarberShop() {
+//Sincroniza as threads
+void BarberShop::organizeBarberShop() {
     for(long unsigned int i = 0; i < operation.size(); i++){
         operation[i].join();
     }
