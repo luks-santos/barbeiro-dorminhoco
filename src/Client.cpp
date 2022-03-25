@@ -58,7 +58,7 @@ void Client::sitOnChair()
         sem_post(availability);
     }
 }
-
+//Retorna quantidade de cadeiras de espera disponíveis
 int Client::getFreeWaitChairs()
 {
     int *aux = new int();

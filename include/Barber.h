@@ -19,7 +19,6 @@
 //Biblioteca para constantes de acesso aos semáforos S_IRWXU, O_CREAT
 #include <fcntl.h>
 #include <iostream>
-
 using namespace std;
 
 class Barber

@@ -61,7 +61,7 @@ void Barber::cutHair()
         sem_post(mutex);
     }
 }
-//Retorna quantidade de cadeiras livres
+//Retorna quantidade de cadeiras de espera disponíveis
 int Barber::getFreeWaitChairs()
 {
     int *aux = new int();

@@ -9,12 +9,9 @@
  * Lucas Batista dos Santos - 0048505                    *
  * Jorge Luís Vieira Murilo - 0027752                    *
  ********************************************************/
-
-#include <iostream>
-#include <signal.h>
-
 #include "BarberShop.h"
-
+#include <signal.h>
+#include <iostream>
 using namespace std;
 
 //Tratador de sinal CTRL-C
